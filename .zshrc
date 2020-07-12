@@ -1,0 +1,5 @@
+alias vi='vim'
+alias r='clear'
+alias c='clear'
+alias src='source ~/.zshrc'
+alias edit='vi ~/.zshrc'
