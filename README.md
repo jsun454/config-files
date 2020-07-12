@@ -1,2 +1,2 @@
 # config-files
-A place to save my config files
+A place to keep my config files
