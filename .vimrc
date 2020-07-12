@@ -10,6 +10,9 @@ set shiftwidth=4
 set laststatus=2
 set noshowmode
 
+" Honestly not sure if I prefer this
+set mouse=a
+
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -19,6 +22,7 @@ endif
 " :PlugInstall
 call plug#begin('~/.vim/vim_plug')
 Plug 'itchyny/lightline.vim' 
+Plug 'terryma/vim-multiple-cursors'
 call plug#end()
 
 let g:lightline = {
