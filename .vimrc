@@ -35,7 +35,6 @@ nmap <Down> g<Down>
 set hi=500
 set bo=all 
 set mouse=a
-"set lz
 
 " vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -54,6 +53,7 @@ Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
+Plug 'tpope/vim-fugitive'
 
 " This needs to load after lightline.vim and NERDTree, and it also requires the terminal to be using a Nerd Font
 " For MacOS, install using `brew tap homebrew/cask-fonts && brew cask install <some-nerd-font>`
