@@ -22,7 +22,6 @@ set ls=2
 set nosmd 
 
 " Line wrapping
-" Vim sets the text width to 78 for vim-file comments, run `:verbose set tw?` to view the source
 set nowrap
 set ss=5
 set lbr
@@ -30,6 +29,12 @@ nmap k gk
 nmap j gj
 nmap <Up> g<Up>
 nmap <Down> g<Down>
+
+" This should prevent Vim from setting the text width to 78 for Vimscript comments (if it still does, run `:verbose set tw?` to view the source)
+aug comment_nowrap
+  au!
+  au BufWinEnter,BufNewFile * setlocal fo-=cro
+aug END
 
 " Tentative
 set hi=500
@@ -54,6 +59,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " This needs to load after lightline.vim and NERDTree, and it also requires the terminal to be using a Nerd Font
 " For MacOS, install using `brew tap homebrew/cask-fonts && brew cask install <some-nerd-font>`
@@ -123,3 +129,7 @@ hi ALEError cterm=underline
 hi ALEErrorSign ctermbg=darkred
 hi ALEWarning cterm=underline
 hi ALEWarningSign ctermbg=darkyellow
+
+" gitgutter
+let g:gitgutter_sign_column_always = 1
+set ut=250
