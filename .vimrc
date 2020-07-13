@@ -5,6 +5,7 @@ set nu
 set cul
 hi CursorLine cterm=none
 hi CursorLineNr cterm=bold
+hi SignColumn ctermbg=none
 
 " Tab completion
 set wmnu 
@@ -51,6 +52,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'dense-analysis/ale'
+Plug 'maximbaz/lightline-ale'
 
 " This needs to load after lightline.vim and NERDTree, and it also requires the terminal to be using a Nerd Font
 " For MacOS, install using `brew tap homebrew/cask-fonts && brew cask install <some-nerd-font>`
@@ -64,15 +67,24 @@ let g:lightline = {
   \   'colorscheme': 'seoul256',
   \   'active': {
   \     'left': [['mode', 'paste'], ['readonly', 'filename']],
-  \     'right': [['lineinfo'], ['percent']]
+  \     'right': [['lineinfo'], ['percent'], ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok']]
   \   },
   \   'inactive': {
   \     'left': [['readonly', 'filename']],
-  \     'right': [['lineinfo'], ['percent']]
+  \     'right': [['lineinfo'], ['percent'], ['linter_checking', 'linter_warnings', 'linter_errors', 'linter_ok']]
   \   },
   \   'component_function': {
   \     'readonly': 'LightlineReadonly',  
   \     'filename': 'LightlineFilename'
+  \   },
+  \   'component_expand' : {
+  \     'linter_checking': 'lightline#ale#checking',
+  \     'linter_warnings': 'lightline#ale#warnings',
+  \     'linter_errors': 'lightline#ale#errors',
+  \     'linter_ok': 'lightline#ale#ok'
+  \   },
+  \   'component_type': {
+  \     'linter_errors': 'error'
   \   }
   \ }
 
@@ -81,10 +93,16 @@ function! LightlineReadonly()
 endfunction
 
 function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
-  return filename . modified
+  let l:filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let l:modified = &modified ? ' +' : ''
+  return l:filename . l:modified
 endfunction
+
+let g:lightline#ale#indicator_checking = "\uf110"
+let g:lightline#ale#indicator_infos = "\uf129"
+let g:lightline#ale#indicator_warnings = "\uf071 "
+let g:lightline#ale#indicator_errors = "\uf05e "
+let g:lightline#ale#indicator_ok = "\uf00c"
 
 " NERDTree
 map <C-o> :NERDTreeToggle<CR>
@@ -97,3 +115,11 @@ let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 let g:WebDevIconsDefaultFolderSymbolColor = s:beige 
 let g:WebDevIconsDefaultFileSymbolColor = s:blue
+
+" ALE
+let g:ale_linters = { 'javascript': ['eslint'] }
+let g:ale_sign_warning = '>>'
+hi ALEError cterm=underline
+hi ALEErrorSign ctermbg=darkred
+hi ALEWarning cterm=underline
+hi ALEWarningSign ctermbg=darkyellow
