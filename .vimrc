@@ -3,9 +3,12 @@ colo ron
 syn on
 set nu
 set cul
+set fillchars+=vert:│
 hi CursorLine cterm=none
 hi CursorLineNr cterm=bold
 hi SignColumn ctermbg=none
+hi VertSplit cterm=none
+hi EndOfBuffer ctermfg=black
 
 " Tab completion
 set wmnu 
@@ -121,6 +124,11 @@ let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
 let g:WebDevIconsDefaultFolderSymbolColor = s:beige 
 let g:WebDevIconsDefaultFileSymbolColor = s:blue
+
+aug nerdtree
+  au!
+  au bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+aug END
 
 " ALE
 let g:ale_linters = { 'javascript': ['eslint'] }
