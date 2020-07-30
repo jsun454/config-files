@@ -69,6 +69,8 @@ Plug 'airblade/vim-gitgutter'
 " Link: https://github.com/Homebrew/homebrew-cask-fonts
 Plug 'ryanoasis/vim-devicons'
 
+Plug 'wesQ3/vim-windowswap'
+
 call plug#end()
 
 " lightline.vim
