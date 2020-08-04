@@ -5,6 +5,9 @@ alias src="source ~/.bash_profile"
 alias edit="vi ~/.bash_profile"
 export GITHUB_USERNAME=jsun454
 export BASH_SILENCE_DEPRECATION_WARNING=1
+export PS1="\[\e[3;36m\][\u@\h \W]\$:\[\e[0m\]"
+export CLICOLOR=1
+export LSCOLORS=exgxbxdxcxegedxbxgxcxd
 
 cpconfig () {
   green="\033[32m"
