@@ -9,6 +9,11 @@ export PS1="\[\e[3;36m\][\u@\h \W]\$:\[\e[0m\]"
 export CLICOLOR=1
 export LSCOLORS=exgxbxdxcxegedxbxgxcxd
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
 cpconfig () {
   green="\033[32m"
   yellow="\033[33m"
