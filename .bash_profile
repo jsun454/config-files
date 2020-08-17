@@ -78,6 +78,15 @@ undo () {
         echo "No changes were made."
         ;;
     esac
+  fi
+}
 
+recolor() {
+  if [ "$LSCOLORS" == exgxbxdxcxegedxbxgxcxd ]; then
+    export LSCOLORS=gxgxbxdxcxegedxbxgxcxd
+    export PS1="\[\e[3;35m\][\u@\h \W]\$:\[\e[0m\]"
+  else
+    export LSCOLORS=exgxbxdxcxegedxbxgxcxd
+    export PS1="\[\e[3;36m\][\u@\h \W]\$:\[\e[0m\]"
   fi
 }
